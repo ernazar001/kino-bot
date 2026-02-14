@@ -36,7 +36,7 @@ def add_user(user_id, full_name, username, phone_number):
     cur.execute("INSERT INTO users (user_id, full_name, username, phone_number, created_at) VALUES (?,?,?,?,?)", (user_id, full_name, username, phone_number, created_at))
     conn.commit()
     conn.close()
-
+    
 
 
 def get_user(user_id):
@@ -48,6 +48,20 @@ def get_user(user_id):
     conn.close()
     return user
 
+def get_movie_by_code(code):
+    conn = sqlite3.connect("filmbot.db")
+    cur = conn.cursor()
+
+    cur.execute(
+        "SELECT movie_file, movie_desc FROM movies WHERE movie_code = ?",
+        (code,)
+    )
+
+    movie = cur.fetchone()
+    conn.close()
+    return movie
+
+
 
 
 def add_movie(movie_file, movie_desc, movie_code):
@@ -57,5 +71,21 @@ def add_movie(movie_file, movie_desc, movie_code):
     cur.execute("INSERT INTO movies (movie_file, movie_desc, movie_code, created_at) VALUES (?, ?, ?, ?)", (movie_file, movie_desc, movie_code, created_at))
     conn.commit()
     conn.close()
+
+def get_all_users():
+    conn = sqlite3.connect("filmbot.db")
+    cur = conn.cursor()
+    cur.execute("SELECT user_id FROM users")
+    users = cur.fetchall()
+    conn.close()
+    return users
+
+def get_all_movies():
+    conn = sqlite3.connect("filmbot.db")
+    cur = conn.cursor()
+    cur.execute("SELECT movie_code, movie_desc FROM movies")
+    movies = cur.fetchall()
+    conn.close()
+    return movies
 
 
