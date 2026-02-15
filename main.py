@@ -1,6 +1,3 @@
-import asyncio
-import logging
-
 from aiogram import Bot, Dispatcher, types, F
 from aiogram.filters import CommandStart, Command
 from aiogram.client.default import DefaultBotProperties
@@ -11,7 +8,8 @@ from aiogram.client.session.aiohttp import AiohttpSession
 import os
 from aiogram.client.session.aiohttp import AiohttpSession
 
-
+import asyncio
+import logging
 
 from config import TOKEN, ADMIN_ID
 from database import init_db, add_user, get_user, add_movie
@@ -24,14 +22,12 @@ from database import get_all_movies
 from database import get_movie_by_code
 from buttons import phone_btn
 from buttons import subscribe_btn
-from aiogram import Bot
-from aiogram import Bot
 
-import os
+
+
+
 import asyncio
-from aiogram import Bot, Dispatcher
-from aiogram.client.default import DefaultBotProperties
-from aiogram.client.session.aiohttp import AiohttpSession
+
 
 # ENV dan olish
 TOKEN = os.getenv("TOKEN")
